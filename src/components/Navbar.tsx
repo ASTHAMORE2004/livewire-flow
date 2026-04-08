@@ -2,21 +2,15 @@ import { useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-/**
- * Top navigation bar — sticks to the top, blurs the background
- * content behind it for that premium frosted-glass look.
- */
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
   const location = useLocation();
 
   const navLinks = [
     { to: "/", label: "Events" },
-    { href: "#", label: "Trending" },
-    { href: "#", label: "About" },
+    { to: "#trending", label: "Trending" },
+    { to: "#about", label: "About" },
   ];
-
-  const isActive = (to?: string) => to === location.pathname;
 
   return (
     <nav className="sticky top-0 z-50 border-b border-border/60 bg-background/70 backdrop-blur-2xl">
@@ -36,24 +30,32 @@ const Navbar = () => {
         {/* Desktop nav */}
         <div className="hidden items-center gap-1 md:flex">
           {navLinks.map((link) => {
-            const active = isActive(link.to);
-            const Component = link.to ? Link : "a";
-            return (
-              <Component
+            const isActive = link.to === location.pathname;
+            const isExternal = link.to.startsWith("#");
+            return isExternal ? (
+              <a
                 key={link.label}
-                {...(link.to ? { to: link.to } : { href: link.href })}
-                className={`relative px-3.5 py-1.5 text-sm font-medium rounded-md transition-colors duration-200
-                  ${active ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+                href={link.to}
+                className="relative px-3.5 py-1.5 text-sm font-medium rounded-md transition-colors duration-200 text-muted-foreground hover:text-foreground"
               >
                 {link.label}
-                {active && (
+              </a>
+            ) : (
+              <Link
+                key={link.label}
+                to={link.to}
+                className={`relative px-3.5 py-1.5 text-sm font-medium rounded-md transition-colors duration-200
+                  ${isActive ? "text-foreground" : "text-muted-foreground hover:text-foreground"}`}
+              >
+                {link.label}
+                {isActive && (
                   <motion.div
                     layoutId="nav-pill"
                     className="absolute inset-0 rounded-md bg-secondary -z-10"
                     transition={{ type: "spring", duration: 0.4, bounce: 0.15 }}
                   />
                 )}
-              </Component>
+              </Link>
             );
           })}
         </div>
@@ -92,19 +94,27 @@ const Navbar = () => {
             className="overflow-hidden border-t border-border/40 md:hidden"
           >
             <div className="container space-y-1 py-3">
-              {navLinks.map((link) => {
-                const Component = link.to ? Link : "a";
-                return (
-                  <Component
+              {navLinks.map((link) =>
+                link.to.startsWith("#") ? (
+                  <a
                     key={link.label}
-                    {...(link.to ? { to: link.to } : { href: link.href })}
+                    href={link.to}
                     onClick={() => setMenuOpen(false)}
                     className="block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
                   >
                     {link.label}
-                  </Component>
-                );
-              })}
+                  </a>
+                ) : (
+                  <Link
+                    key={link.label}
+                    to={link.to}
+                    onClick={() => setMenuOpen(false)}
+                    className="block rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                  >
+                    {link.label}
+                  </Link>
+                )
+              )}
             </div>
           </motion.div>
         )}
