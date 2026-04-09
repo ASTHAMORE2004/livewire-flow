@@ -5,10 +5,37 @@ import EventPage from "./pages/EventPage.tsx";
 import NotFound from "./pages/NotFound.tsx";
 
 /*
-  App root — wraps everything in a router.
-  AnimatePresence on the routes gives us smooth
-  page transitions when navigating between views.
+  Smooth page transitions using a shared layout animation.
+  Pages slide + fade in opposite directions depending on
+  whether you're drilling into an event or going back.
 */
+
+const pageVariants = {
+  initial: {
+    opacity: 0,
+    y: 24,
+    scale: 0.98,
+    filter: "blur(4px)",
+  },
+  animate: {
+    opacity: 1,
+    y: 0,
+    scale: 1,
+    filter: "blur(0px)",
+  },
+  exit: {
+    opacity: 0,
+    y: -16,
+    scale: 0.99,
+    filter: "blur(3px)",
+  },
+};
+
+const pageTransition = {
+  type: "tween",
+  ease: [0.25, 0.46, 0.45, 0.94],
+  duration: 0.4,
+};
 
 const AnimatedRoutes = () => {
   const location = useLocation();
@@ -17,10 +44,12 @@ const AnimatedRoutes = () => {
     <AnimatePresence mode="wait">
       <motion.div
         key={location.pathname}
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.2, ease: "easeInOut" }}
+        variants={pageVariants}
+        initial="initial"
+        animate="animate"
+        exit="exit"
+        transition={pageTransition}
+        style={{ willChange: "opacity, transform, filter" }}
       >
         <Routes location={location}>
           <Route path="/" element={<Index />} />
