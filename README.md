@@ -1,92 +1,126 @@
 # VickyBytes — Live Event Streaming Platform
 
-A responsive, frontend-only live event streaming platform built as part of a frontend engineering assignment. Users can browse upcoming and live events, search and filter by category, and jump into an event page with an embedded video player and a simulated live chat.
+A fully responsive, frontend-only live event streaming platform built as a **Frontend Engineering Assignment**. The app lets users browse live and upcoming events, filter by category or search, and navigate into individual event pages featuring embedded video streams, event details, and a simulated real-time chat experience.
+
+> No backend. No Firebase. No shadcn UI. Pure frontend craftsmanship.
 
 ---
 
-## Features
+## 📋 Project Overview
 
-- **Event Listing Page** — 15 event cards displayed in a responsive grid with images, like/share/view buttons, schedule info, and category badges.
-- **Search & Filter** — Real-time search by title, host, or category. One-click category filters to narrow results.
-- **Event Streaming Page** — Full video embed (YouTube/Twitch), event metadata, host info, and a description panel.
-- **Simulated Live Chat** — Messages drip in automatically to mimic a real chat experience. Users can type and send their own messages with auto-scroll.
-- **Smooth Page Transitions** — Framer Motion–powered fade/scale/blur transitions between listing and event pages.
-- **Fully Responsive** — Works seamlessly on mobile, tablet, and desktop using Tailwind responsive utilities.
+This project demonstrates scalable frontend architecture, clean responsive UI design, and production-quality code through two core pages:
 
-## Tech Stack
+### Part 1 — Event Listing Page
+- Displays **15 event cards** in a responsive grid layout
+- Each card includes: event image, title, ❤️ like toggle, 🔗 share button, view/watch button, schedule date & time, category badge, and viewer count
+- **Search bar** with real-time filtering by event name, host, or category
+- **Category filter pills** (Technology, Music, Gaming, Design, Business, Wellness, Lifestyle, Entertainment)
+- Staggered entrance animations for a polished first impression
 
-| Tool | Purpose |
-|------|---------|
-| React 18 | Component architecture & UI rendering |
-| React Router v6 | Client-side routing between pages |
-| Tailwind CSS v3 | Utility-first styling and responsive layout |
-| Framer Motion | Page transitions and micro-animations |
-| TypeScript | Type safety across the codebase |
-| Vite | Dev server and production build tooling |
+### Part 2 — Event Streaming Page
+- Click any event card to navigate with a **smooth page transition** (fade + scale + blur)
+- **Responsive video container** with embedded YouTube/Twitch livestream
+- **Simulated live chat** panel — messages drip in automatically, users can type and send their own messages, with auto-scroll to latest
+- **Event description section** with clean typography, host info, viewer count, date/time, and category
+- Chat sits beside the video on desktop, stacks below on mobile/tablet
 
-> **No backend, no Firebase, no shadcn UI** — everything runs client-side with mock data.
+### Bonus Features
+- Framer Motion page transitions and micro-interactions
+- Spring-based like button animation
+- Clipboard-based share functionality
+- Mobile hamburger menu with animated open/close
+- Custom dark theme with glassmorphism effects
 
-## Getting Started
+---
+
+## 🛠️ Tech Stack Used
+
+| Technology | Purpose |
+|---|---|
+| **React 18** | Component architecture and UI rendering |
+| **TypeScript** | Type safety across the entire codebase |
+| **React Router v6** | Client-side routing and navigation |
+| **Tailwind CSS v3** | Utility-first styling and responsive design |
+| **Framer Motion** | Page transitions, staggered animations, and micro-interactions |
+| **Vite 5** | Lightning-fast dev server and optimized production builds |
+
+---
+
+## 🚀 Setup Instructions
 
 ### Prerequisites
 
-- Node.js 18+ (or Bun)
-- npm, yarn, or bun
+- **Node.js** 18 or higher (or **Bun**)
+- **npm**, **yarn**, or **bun** package manager
 
-### Installation
+### 1. Clone the Repository
 
 ```bash
-# Clone the repo
 git clone https://github.com/<your-username>/vickybytes-live-events.git
 cd vickybytes-live-events
-
-# Install dependencies
-npm install
-# or
-bun install
 ```
 
-### Development
+### 2. Install Dependencies
+
+```bash
+npm install
+```
+
+### 3. Start Development Server
 
 ```bash
 npm run dev
-# or
-bun run dev
 ```
 
-Open [http://localhost:5173](http://localhost:5173) in your browser.
+The app will be available at [http://localhost:5173](http://localhost:5173).
 
-### Production Build
+### 4. Build for Production
 
 ```bash
 npm run build
 npm run preview
 ```
 
-## Project Structure
+---
+
+## 📁 Project Structure
 
 ```
 src/
 ├── components/
-│   ├── Navbar.tsx          # Top navigation bar
-│   ├── EventCard.tsx       # Individual event card with like/share
-│   ├── SearchAndFilter.tsx # Search input + category filter pills
-│   └── LiveChat.tsx        # Simulated live chat panel
+│   ├── Navbar.tsx            # Top navigation with mobile hamburger menu
+│   ├── EventCard.tsx         # Event card with like, share, and view actions
+│   ├── SearchAndFilter.tsx   # Search input + category filter pills
+│   └── LiveChat.tsx          # Simulated real-time chat panel
 ├── data/
-│   └── events.ts           # Mock event data (15 events)
+│   └── events.ts             # Mock data for 15 unique events
 ├── pages/
-│   ├── Index.tsx            # Event listing / landing page
-│   ├── EventPage.tsx        # Event streaming page
-│   └── NotFound.tsx         # 404 fallback
-├── App.tsx                  # Router + animated page transitions
-├── index.css                # Design tokens + global styles
-└── main.tsx                 # App entry point
+│   ├── Index.tsx              # Event listing / landing page
+│   ├── EventPage.tsx          # Event streaming page with video + chat
+│   └── NotFound.tsx           # 404 fallback page
+├── App.tsx                    # Router setup + animated page transitions
+├── index.css                  # Design tokens, custom classes, global styles
+└── main.tsx                   # Application entry point
 ```
 
-## Deployment
+---
 
-Deployed on **Lovable** — [Live Demo](https://livewire-flow.lovable.app)
+## 📱 Responsiveness
 
-## License
+The UI is fully responsive across all device sizes using Tailwind responsive utilities:
+
+- **Mobile** (375px) — Single column cards, stacked video/chat, hamburger nav
+- **Tablet** (768px) — Two-column grid, adjusted spacing
+- **Desktop** (1280px+) — Four-column grid, side-by-side video and chat
+
+---
+
+## 🌐 Deployment Link
+
+**Live Demo:** [https://livewire-flow.lovable.app](https://livewire-flow.lovable.app)
+
+---
+
+## 📄 License
 
 MIT
