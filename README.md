@@ -56,7 +56,7 @@ This project demonstrates scalable frontend architecture, clean responsive UI de
 ### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/<your-username>/vickybytes-live-events.git
+git clone https://github.com/ASTHAMORE2004/livewire-flow.git
 cd vickybytes-live-events
 ```
 
@@ -77,6 +77,7 @@ The app will be available at [http://localhost:5173](http://localhost:5173).
 ### 4. Build for Production
 
 ```bash
+npm install 
 npm run build
 npm run preview
 ```
