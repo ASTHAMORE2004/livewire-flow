@@ -120,8 +120,3 @@ The UI is fully responsive across all device sizes using Tailwind responsive uti
 
 **Live Demo:** [https://livewireflow.vercel.app/](https://livewireflow.vercel.app/)
 
----
-
-## License
-
-MIT
