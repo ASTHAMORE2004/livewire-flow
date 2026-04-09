@@ -1,6 +1,7 @@
-import { useState } from "react";
+import { useState, useCallback } from "react";
 import { Link } from "react-router-dom";
 import { motion } from "framer-motion";
+import { playHoverTick, playClickPop } from "../utils/sounds";
 import type { Event } from "../data/events";
 
 interface EventCardProps {
@@ -47,12 +48,15 @@ const EventCard = ({ event, index }: EventCardProps) => {
     },
   };
 
+  const handleHover = useCallback(() => playHoverTick(), []);
+
   return (
     <motion.div
       variants={cardVariants}
       initial="hidden"
       animate="visible"
       className="event-card group"
+      onMouseEnter={handleHover}
     >
       {/* Thumbnail area */}
       <Link to={`/event/${event.id}`} className="block">

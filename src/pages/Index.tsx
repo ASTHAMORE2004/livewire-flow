@@ -1,8 +1,9 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { motion } from "framer-motion";
 import Navbar from "../components/Navbar";
 import SearchAndFilter from "../components/SearchAndFilter";
 import EventCard from "../components/EventCard";
+import EventCardSkeleton from "../components/EventCardSkeleton";
 import { events } from "../data/events";
 
 /**
@@ -13,6 +14,13 @@ import { events } from "../data/events";
 const Index = () => {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("All");
+  const [isLoading, setIsLoading] = useState(true);
+
+  // Brief loading state so skeletons flash on first visit
+  useEffect(() => {
+    const timer = setTimeout(() => setIsLoading(false), 800);
+    return () => clearTimeout(timer);
+  }, []);
 
   const filteredEvents = useMemo(() => {
     const query = search.toLowerCase();
@@ -88,7 +96,13 @@ const Index = () => {
         </div>
 
         {/* Event grid */}
-        {filteredEvents.length > 0 ? (
+        {isLoading ? (
+          <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+            {Array.from({ length: 8 }).map((_, i) => (
+              <EventCardSkeleton key={i} />
+            ))}
+          </div>
+        ) : filteredEvents.length > 0 ? (
           <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
             {filteredEvents.map((event, i) => (
               <EventCard key={event.id} event={event} index={i} />
