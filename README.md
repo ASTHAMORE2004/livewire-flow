@@ -6,7 +6,7 @@ A fully responsive, frontend-only live event streaming platform built as a **Fro
 
 ---
 
-## 📋 Project Overview
+## Project Overview
 
 This project demonstrates scalable frontend architecture, clean responsive UI design, and production-quality code through two core pages:
 
@@ -33,7 +33,7 @@ This project demonstrates scalable frontend architecture, clean responsive UI de
 
 ---
 
-## 🛠️ Tech Stack Used
+## Tech Stack Used
 
 | Technology | Purpose |
 |---|---|
@@ -46,7 +46,7 @@ This project demonstrates scalable frontend architecture, clean responsive UI de
 
 ---
 
-## 🚀 Setup Instructions
+## Setup Instructions
 
 ### Prerequisites
 
@@ -83,7 +83,7 @@ npm run preview
 
 ---
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -117,10 +117,10 @@ The UI is fully responsive across all device sizes using Tailwind responsive uti
 
 ## 🌐 Deployment Link
 
-**Live Demo:** [https://livewire-flow.lovable.app](https://livewire-flow.lovable.app)
+**Live Demo:** [https://livewireflow.vercel.app/](https://livewireflow.vercel.app/)
 
 ---
 
-## 📄 License
+## License
 
 MIT
