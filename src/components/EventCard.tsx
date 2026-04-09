@@ -23,6 +23,7 @@ const EventCard = ({ event, index }: EventCardProps) => {
     e.preventDefault();
     e.stopPropagation();
     setLiked((prev) => !prev);
+    playClickPop();
   };
 
   const copyShareLink = (e: React.MouseEvent) => {
